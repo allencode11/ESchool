@@ -6,8 +6,7 @@ namespace ESchoolApi.Repositories;
 
 public class UsersRepo : IRequest<User>
 {
-    private readonly ESchoolDBContext _eSchoolDbContext = new();
-
+    private readonly ESchoolDBContext _eSchoolDbContext;
     public UsersRepo(ESchoolDBContext dbContext)
     {
         _eSchoolDbContext = dbContext;

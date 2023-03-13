@@ -26,101 +26,84 @@ namespace ESchoolApi.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(25)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Disciplines", (string)null);
+                    b.ToTable("Disciplines");
                 });
 
             modelBuilder.Entity("ESchoolApi.Models.Grade", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)")
-                        .HasDefaultValue("False");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Grades", (string)null);
+                    b.ToTable("Grades");
                 });
 
             modelBuilder.Entity("ESchoolApi.Models.Qualification", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("DisciplineId")
-                        .IsUnicode(false)
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Qualifications", (string)null);
+                    b.ToTable("Qualifications");
                 });
 
             modelBuilder.Entity("ESchoolApi.Models.User", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("CreatedAt")
                         .IsRequired()
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("Institution")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(30)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(20)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(30)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<string>("UpdatedOn")
                         .IsRequired()
@@ -128,11 +111,12 @@ namespace ESchoolApi.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(60)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.ToTable("Users", (string)null);
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ESchoolApi.Models.UsersQualification", b =>
@@ -140,12 +124,6 @@ namespace ESchoolApi.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Confirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("QualificationId")
                         .HasColumnType("uniqueidentifier");
@@ -157,21 +135,36 @@ namespace ESchoolApi.Migrations
 
                     b.HasIndex("QualificationId");
 
-                    b.ToTable("UsersQualification");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UsersQualifications");
                 });
 
             modelBuilder.Entity("ESchoolApi.Models.UsersQualification", b =>
                 {
-                    b.HasOne("ESchoolApi.Models.Qualification", "Qualification")
+                    b.HasOne("ESchoolApi.Models.Qualification", "Qualifications")
                         .WithMany("UsersQualifications")
                         .HasForeignKey("QualificationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Qualification");
+                    b.HasOne("ESchoolApi.Models.User", "Users")
+                        .WithMany("UsersQualifications")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Qualifications");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("ESchoolApi.Models.Qualification", b =>
+                {
+                    b.Navigation("UsersQualifications");
+                });
+
+            modelBuilder.Entity("ESchoolApi.Models.User", b =>
                 {
                     b.Navigation("UsersQualifications");
                 });
