@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ESchoolApi.Migrations
 {
     [DbContext(typeof(ESchoolDBContext))]
-    [Migration("20230310130549_AddingMaxLength")]
-    partial class AddingMaxLength
+    [Migration("20230313094155_creating database")]
+    partial class creatingdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alina\\Documents\\personal\\ESchool\\ESchoolApi\\ESchoolApi.csproj": {}
+    "C:\\Users\\alina\\OneDrive\\Documents\\personal\\ESchool\\ESchoolApi\\ESchoolApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alina\\Documents\\personal\\ESchool\\ESchoolApi\\ESchoolApi.csproj": {
+    "C:\\Users\\alina\\OneDrive\\Documents\\personal\\ESchool\\ESchoolApi\\ESchoolApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alina\\Documents\\personal\\ESchool\\ESchoolApi\\ESchoolApi.csproj",
+        "projectUniqueName": "C:\\Users\\alina\\OneDrive\\Documents\\personal\\ESchool\\ESchoolApi\\ESchoolApi.csproj",
         "projectName": "ESchoolApi",
-        "projectPath": "C:\\Users\\alina\\Documents\\personal\\ESchool\\ESchoolApi\\ESchoolApi.csproj",
+        "projectPath": "C:\\Users\\alina\\OneDrive\\Documents\\personal\\ESchool\\ESchoolApi\\ESchoolApi.csproj",
         "packagesPath": "C:\\Users\\alina\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alina\\Documents\\personal\\ESchool\\ESchoolApi\\obj\\",
+        "outputPath": "C:\\Users\\alina\\OneDrive\\Documents\\personal\\ESchool\\ESchoolApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alina\\AppData\\Roaming\\NuGet\\NuGet.Config",
